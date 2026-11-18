@@ -1,23 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Greeting from './Greeting';
-import Counter from './Counter';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';
+import Home from './Home';
 import SkillsList from './SkillsList';
-import JokeBox from './JokeBox';
+import About from './About';
 
 function App() {
-  const name = 'Priscilla';
-  const skillCount = 5;
+  function linkStyle({ isActive }) {
+    return {
+      fontWeight: isActive ? 'bold' : 'normal',
+      marginRight: '12px',
+    };
+  }
 
   return (
-    <div>
-      <h1>Hello, {name}!</h1>
-      <p>You've learned {skillCount} skills so far.</p>
-      <Greeting name="Priscilla" />
-      <Counter />
-      <SkillsList />
-      <JokeBox />
-    </div>
+    <BrowserRouter>
+      <nav>
+        <NavLink to="/" style={linkStyle}>
+          Home
+        </NavLink>
+        <NavLink to="/skills" style={linkStyle}>
+          Skills
+        </NavLink>
+        <NavLink to="/about" style={linkStyle}>
+          About
+        </NavLink>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/skills" element={<SkillsList />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
