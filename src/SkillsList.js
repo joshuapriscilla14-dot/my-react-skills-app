@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-function SkillsList() {
-  const [skills, setSkills] = useState(['HTML', 'CSS', 'JavaScript', 'React']);
+function SkillsList(props) {
+  const skills = props.skills;
+  const setSkills = props.setSkills;
   const [newSkill, setNewSkill] = useState('');
 
   function removeSkill(skillToRemove) {
@@ -32,7 +33,7 @@ function SkillsList() {
       />
       <button onClick={addSkill}>Add</button>
 
-      {skills.length === 0 && <p>No skills yet — add one below!</p>}
+      {skills.length === 0 && <p>No skills yet. Add one above!</p>}
 
       <ul>
         {skills.map(function (skill) {
